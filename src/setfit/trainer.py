@@ -23,6 +23,7 @@ class SetFitTrainer:
         num_epochs: int = 1,
         learning_rate: float = 2e-5,
         batch_size: int = 16,
+        progress_bar=True
     ):
 
         self.model = model
@@ -34,6 +35,7 @@ class SetFitTrainer:
         self.num_epochs = num_epochs
         self.learning_rate = learning_rate
         self.batch_size = batch_size
+        self.progress_bar = progress_bar
 
     def train(self):
         # self.model.model_body.load_state_dict(copy.deepcopy(self.model.model_original_state))
@@ -92,7 +94,7 @@ class SetFitTrainer:
             steps_per_epoch=train_steps,
             optimizer_params={"lr": self.learning_rate},
             warmup_steps=warmup_steps,
-            show_progress_bar=False,
+            show_progress_bar=self.progress_bar,
         )
 
         # Train the final classifier
