@@ -1,6 +1,7 @@
 import math
 from typing import Optional, Union
 
+from tqdm import tqdm 
 import evaluate
 import numpy as np
 from sentence_transformers import InputExample, losses
@@ -98,7 +99,9 @@ class SetFitTrainer:
         )
 
         # Train the final classifier
-        self.model.fit(x_train, y_train)
+        with tqdm(total=total, position=0, leave=True) as pbar:
+            self.model.fit(x_train, y_train)
+            pbar.update()
 
     def evaluate(self):
         """Computes the metrics for a given classifier."""
