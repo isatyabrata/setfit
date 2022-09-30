@@ -92,7 +92,7 @@ class SetFitTrainer:
             steps_per_epoch=train_steps,
             optimizer_params={"lr": self.learning_rate},
             warmup_steps=warmup_steps,
-            show_progress_bar=True,
+            show_progress_bar=False,
         )
 
         # Train the final classifier
