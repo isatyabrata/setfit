@@ -1,7 +1,6 @@
 import math
 from typing import Optional, Union
 
-from tqdm import tqdm 
 import evaluate
 import numpy as np
 from sentence_transformers import InputExample, losses
@@ -10,6 +9,7 @@ from sentence_transformers.losses.BatchHardTripletLoss import BatchHardTripletLo
 from torch.utils.data import DataLoader
 
 from .modeling import SetFitModel, SupConLoss, sentence_pairs_generation
+from tqdm.notebook import tqdm
 
 
 class SetFitTrainer:
@@ -99,9 +99,7 @@ class SetFitTrainer:
         )
 
         # Train the final classifier
-        with tqdm(total=total, position=0, leave=True) as pbar:
-            self.model.fit(x_train, y_train)
-            pbar.update()
+        self.model.fit(x_train, y_train)
 
     def evaluate(self):
         """Computes the metrics for a given classifier."""
