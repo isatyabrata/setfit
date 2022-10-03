@@ -9,7 +9,7 @@ import torch
 import torch.nn as nn
 from huggingface_hub import PyTorchModelHubMixin, hf_hub_download
 from sentence_transformers import InputExample, SentenceTransformer, models
-from sklearn.linear_model import LogisticRegression(verbose=False)
+from sklearn.linear_model import LogisticRegression
 from tqdm.notebook import tqdm
 
 
